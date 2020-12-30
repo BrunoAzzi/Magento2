@@ -30,7 +30,7 @@ Install [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubu
 Execute in your terminal, change the _MYMAGENTO2_ to use the name of your project:
 
 ```
-curl -s https://raw.githubusercontent.com/clean-docker/Magento2/master/init | bash -s MYMAGENTO2 clone
+curl -s https://raw.githubusercontent.com/brunoazzi/Magento2/master/init | bash -s MYMAGENTO2 clone
 ```
 
 If you want to install the Magento 2, use like that:
@@ -81,7 +81,3 @@ or to run in the background using detached mode
 `$ docker-compose -f docker-compose.yml -f docker-compose.elasticsearch.yml up -d`
 
 **Elasticsearch:** http://localhost:9200
-
-### License
-
-MIT © 2018 [Rafael Corrêa Gomes](https://github.com/rafaelstz/) and [contributors](https://github.com/clean-docker/Magento2/graphs/contributors).
