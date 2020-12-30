@@ -20,7 +20,7 @@ RUN apt-get update \
 	apt-utils \
 	gnupg \
 	redis-tools \
-	mysql-client \
+	mariadb-client \
 	git \
 	vim \
 	wget \
@@ -35,6 +35,9 @@ RUN apt-get update \
 
 # Install Magento Dependencies
 
+RUN pecl install mcrypt-1.0.3
+RUN docker-php-ext-enable mcrypt
+
 RUN docker-php-ext-configure \
   	gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
   	docker-php-ext-install \
@@ -43,7 +46,6 @@ RUN docker-php-ext-configure \
   	bcmath \
   	intl \
   	mbstring \
-  	mcrypt \
   	pdo_mysql \
   	soap \
   	xsl \
@@ -61,15 +63,14 @@ RUN apt-get update \
 
 # Install Node, NVM, NPM and Grunt
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-  	&& apt-get install -y nodejs build-essential \
-    && curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh \
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash \
+	&& apt-get install -y nodejs \
+    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
     && npm i -g grunt-cli yarn
 
 # Install Composer
 
 RUN	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
-RUN composer global require hirak/prestissimo
 
 # Install Code Sniffer
 
